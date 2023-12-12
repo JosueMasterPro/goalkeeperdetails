@@ -1,0 +1,17 @@
+  .border-row {
+    border: 1px solid #000; /* Borde para las filas */
+    padding: 10px; /* Ajusta el relleno según tus necesidades */
+    background-color: white;
+    justify-content: center;
+  }
+  
+  .border-col {
+    border-right: 1px solid #000; /* Borde derecho para separar las columnas */
+    font-weight: 500;
+    background-color: white;
+  }
+  
+  /* Elimina el borde derecho del último elemento Col */
+  .border-col:last-child {
+    border-right: none;
+  }

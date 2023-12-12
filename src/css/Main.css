@@ -1,0 +1,31 @@
+.Main-Container{
+    display: grid;
+    padding: 0 24px;
+    height: 100vh;
+    background-image: url('../img/stacked-waves-haikei.svg');
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-y: auto;
+}
+
+@media (width >= 576px) {
+    .Main-Container{padding: 0;}  
+}
+
+
+.Main-Cards-Container{
+    margin: 0 24px 24px 24px;
+    place-items: center;
+}
+
+.card{
+    margin-top: 20px;
+    opacity: 1;
+    transition: all 0.5s;
+    transition-timing-function: linear;
+}
+.card:hover{
+    transform: scale(1.01,1.01);
+    box-shadow: 0 20px 20px rgba(36, 128, 226, 0.912);
+}

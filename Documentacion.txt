@@ -1,0 +1,18 @@
+//Video Tutorial para el login
+https://www.youtube.com/watch?v=H_vEJt5Id_I
+
+//Video Tutorial para conectar firebase con react
+// https://www.youtube.com/watch?v=jCY6DH8F4oc
+/**
+ * this other video was to update realtime data from firebase also you can see it to get the CRUD
+ * https://www.youtube.com/watch?v=F7t-n5c7JsE
+ *  
+ */
+//SheetSheeet React-Bootstrap
+https://react-bootstrap.netlify.app/docs/getting-started/introduction
+//SheetSheeet para react-router-dom
+https://reactrouter.com/en/main/start/tutorial
+
+//crear un archivo .env.locale y dentro de el escribir: BROWSER=None
+esto permite que al ejecutar npm start o yarn start, no habra el navegador
+automaticamente

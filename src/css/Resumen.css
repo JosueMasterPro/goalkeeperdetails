@@ -1,0 +1,86 @@
+.Logo_H{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253);
+    transition-duration: 0.3s;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed; 
+}
+
+@media (max-width: 576px) {
+    .table-responsive {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+.B{
+    text-align: center;
+    font-size: medium;
+    font-weight: 800;
+    word-spacing: 5px;
+    letter-spacing: 1px;
+}
+
+/*Boton añadir/Agregar*/
+.add-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: cyan;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .add-svgIcon {
+    width: 18px;
+    transition-duration: 0.3s;
+  }
+  
+  .add-svgIcon path {
+    fill: white;
+  }
+  
+  .add-btn:hover {
+    width: 100px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: rgb(181, 160, 255);
+    align-items: center;
+  }
+  
+  .add-btn:hover .svgIcon {
+    /* width: 20px; */
+    transition-duration: 0.3s;
+    transform: translateY(-200%);
+  }
+  
+  .add-btn::before {
+    position: absolute;
+    bottom: -20px;
+    content: "+ Agregar";
+    color: white;
+    /* transition-duration: .3s; */
+    font-size: 0px;
+  }
+  
+  .add-btn:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    bottom: unset;
+    /* transform: translateY(-30px); */
+    transition-duration: 0.3s;
+  }

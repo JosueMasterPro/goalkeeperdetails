@@ -1,0 +1,133 @@
+/*Login Styles*/
+*{box-sizing: border-box;}
+
+.login-container{
+  display: grid;
+  place-items: center;
+  padding: 0 24px;
+  height: 100vh;
+  background-image: url('../img/picacho.jpeg');
+  background-position: center center;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  color: #f9f9f9;  
+  animation: "background" 10s infinte linear alternate linear;
+}
+@media (width >= 500px) {
+  .login-container{padding: 0;}  
+}
+@media (height <= 560px) {
+  .login-container{height: 100%;}  
+}
+
+.login{
+  width: 90%;
+  padding: 70px 30px 44px;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  border: 3px solid rgba(0, 255, 255, 0.5);
+  /* filter: drop-shadow(white 15px 10px 4px); */
+}
+
+.login > h2{
+  font-size: 36px;
+  font-weight: 500;
+  margin: 0 0 4px;
+}
+
+.login > h3{
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 30px;
+}
+.login form{
+  display: grid;
+  gap: 16px;
+  place-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+@media (width >= 450px) {
+  .login{width: 380px;}  
+}
+
+.avatar{
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: linear-gradient(-45deg,#157ae1,#c7a1ff);
+  padding: 2px;
+  width: 120px;
+  height: 120px;
+}
+
+.avatar > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid cyan;
+}
+
+.textbox{
+  width: 100%;
+  position: relative;
+}
+
+.textbox span{
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  translate: 0 -50%;
+  color: rgba(255, 255, 255, 1);
+}
+
+.textbox .toggle{
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  translate: 0 -50%;
+  color: rgba(255, 255, 255, 1);
+}
+
+.login-form input,
+.login-form button{
+  width: 100%;
+  height: 60px;
+  outline: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.login input{
+  background: transparent;
+  border: 2px solid rgba(0, 255, 255,0.5);
+  font-size: 18px;
+  padding: 0 20px 0 50px;
+  color: inherit;
+}
+
+.login input::placeholder{
+  color: white;
+}
+
+.login input:focus{
+  background-color:rgba(255, 255, 255,0.1) ;
+  color: rgba(255, 255, 255, 1);
+  border-color: cyan;
+}
+
+.login input:focus ~ span{
+  border-color: cyan;
+}
+
+.login-form button{
+  cursor: pointer;
+  background: rgba(0, 255, 255,1);
+  color: black;
+  border: 0;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
