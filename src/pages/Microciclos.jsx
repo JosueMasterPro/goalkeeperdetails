@@ -32,13 +32,12 @@ const Microciclos = () => {
         }, []);
 
         useEffect(()=>{
-                if(microDatos){
-                    // eslint-disable-next-line array-callback-return
-                    microDatos.map((datos,index)=>{
-                        setTotalEntrenos(microDatos.reduce((total, micro) => total + datos.data.Entrenos, 0));
-                    }) 
-                }
-
+            if(microDatos){
+                // eslint-disable-next-line array-callback-return
+                microDatos.map((datos,index)=>{
+                    setTotalEntrenos(microDatos.reduce((total) => total + datos.data.Entrenos, 0));
+                }) 
+            }
         },[microDatos]);
 
     return(

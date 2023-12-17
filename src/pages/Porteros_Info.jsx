@@ -1,13 +1,25 @@
 /*PorterosInfo*/
 import BackButton from "../components/BackButton";
 import { usePorteros } from '../Context/porterosContex';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
+
+import {db} from '../firebase-config';
+import {
+    collection,
+    onSnapshot,
+  } from "firebase/firestore";
 
 const Portero_Info = () =>{
     const { datosPorteros } = usePorteros();
-    const num = [datosPorteros.Nombre];
+    /*Variables de microciiclo*/
+    const [microDatos,setMicroDatos] = useState(null);
+    const [totalEntrenos, setTotalEntrenos] = useState(0); 
 
+    //Helper para ver si tiene datos
+    const num = [datosPorteros.Nombre];
+    //Total de entrenos
+    const [entrenosPorPortero, setEntrenosPorPortero] = useState({});
     useEffect(() => {
         // Obtener todos los elementos que tienen clases que comienzan con Info-
         const elementos = document.querySelectorAll('[class^="Info-"]');
@@ -40,7 +52,49 @@ const Portero_Info = () =>{
                 }
             }
         });
-    }
+    };
+    /* Info de Mircociclos*/
+        const userCollectionRef = collection(db, "Microciclos");
+        useEffect(() => {
+            const getusers = onSnapshot(userCollectionRef,snapshot =>{
+                setMicroDatos(snapshot.docs.map(doc=>({id: doc.id, data:doc.data()})));
+            })
+            return () => {
+                getusers();
+            }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            }, []);
+
+            useEffect(()=>{
+                    if(microDatos){
+                        let nuevoTotalEntrenos = 0;
+                        let nuevoEntrenosPorPortero = { ...entrenosPorPortero };
+
+                        microDatos.forEach((datos) => {
+                            // Sumar los entrenos totales
+                            nuevoTotalEntrenos += datos.data.Entrenos;
+                            // Iterar sobre los porteros en los datos
+                            datos.data.Porteros.forEach((portero) => {
+                              // Verificar si ya existe la entrada para el portero en entrenosPorPortero
+                              if (!nuevoEntrenosPorPortero[portero.ID]) {
+                                // Si no existe, crear una entrada para el portero con valor inicial 0
+                                nuevoEntrenosPorPortero[portero.ID] = 0;
+                              }
+                              if (!nuevoEntrenosPorPortero["Count_"+portero.ID]) {
+                                // Si no existe, crear una entrada para el portero con valor inicial 0
+                                nuevoEntrenosPorPortero["Count_"+portero.ID] = 0;
+                              }
+                              // Sumar los entrenos del portero al total acumulado
+                              nuevoEntrenosPorPortero[portero.ID] += portero.Entreno_Ind;
+                              nuevoEntrenosPorPortero["Count_"+portero.ID]++;
+                            });
+                          });
+                          setTotalEntrenos(nuevoTotalEntrenos);
+                          setEntrenosPorPortero(nuevoEntrenosPorPortero);
+                    };
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            },[microDatos]);
+
 
     return(
         /*Buscar otro diseño para esta pagina que no sea con bootstrap*/ 
@@ -109,12 +163,12 @@ const Portero_Info = () =>{
                     </div>
                     <div className="Info-11">
                         <div className="I-11-1">Microciclos</div>
-                        <div className="I-11-2">{datosPorteros.Peso}
+                        <div className="I-11-2">{entrenosPorPortero["Count_"+datosPorteros.ID] || 0 }
                         </div>
                     </div>
                     <div className="Info-12">
                         <div className="I-12-1">Entrenos</div>
-                        <div className="I-12-2">{datosPorteros.Peso}</div>
+                        <div className="I-12-2">{entrenosPorPortero[datosPorteros.ID] || 0 }/{totalEntrenos}</div>
                     </div>
                     <div className="Info-13">
                         <div className="I-13-1">Partidos</div>
