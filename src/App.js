@@ -8,8 +8,9 @@ import Login from './pages/Login';
 import Main from './pages/Main';
 import Resumen from './pages/Resumen';
 import Porteros from './pages/Porteros';
-import Entreno from './pages/Entreno';
 import PorteroInfo from './pages/Porteros_Info'
+import Microciclos from './pages/Microciclos';
+import Entreno from './pages/Entreno';
 
 function App() {
   return (
@@ -23,10 +24,11 @@ function App() {
                       </ProtectedRoute>
                     }/>
             <Route path='/login' element={ <Login/> }/>
-            <Route path='/Porteros' element={<Porteros/>}/>
-            <Route path='/Entreno' element={ <Entreno/> }/>
             <Route path='/Resumen' element={ <Resumen/> }/>
+            <Route path='/Porteros' element={<Porteros/>}/>
             <Route path="/Porteros/:ID" element={<PorteroInfo/>}/>
+            <Route path="/Microciclos" element={<Microciclos/>}/>
+            <Route path='/Entreno' element={ <Entreno/> }/>
           </Routes>
         </PorterosProvider>
       </AuhtProvider>

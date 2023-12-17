@@ -6,10 +6,13 @@ import { db, storage} from '../firebase-config';
 import {
     doc,
     setDoc,
+    collection,
+    getDocs
   } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 function ModalAddData(props){
+    const [docAmount, setdocAmount] = useState(0);
     /**Imagen */
     const [image, setImage] = useState("");//aqui se guarda la imagen
     const [imageProgress, setImageProgress] = useState({
@@ -24,6 +27,7 @@ function ModalAddData(props){
         ID: "",
         Nombre:"",
         Equipo: "",
+        Categoria: "",
         Ciudad: "",
         Fecha: "",
         Edad: "",
@@ -47,12 +51,23 @@ function ModalAddData(props){
         event.stopPropagation();
         subirDatos();
     }
-  
       setValidated(true);
     };
+
+    const getDocAmount = async () => {
+        const userCollectionRef = collection(db, 'Porteros');
+        
+        try {
+          const querySnapshot = await getDocs(userCollectionRef);
+          setdocAmount(querySnapshot.size+1);
+        } catch (error) {
+          console.error('Error al obtener la cantidad de documentos:', error);
+        }
+      };
     /*Subir los datos a firebase*/
     const subirDatos = async () => {
-        await setDoc(doc(db,"Porteros", datosLocales.ID), datosLocales);
+        /*al subir la imagen docAmount realiza un conteo de los documentos totales + 1, para guardarlo por orden*/
+        await setDoc(doc(db,"Porteros",docAmount+"-" + datosLocales.ID), datosLocales);
         setDatosLocales({
             urlImage:"",
             ID: "",
@@ -143,6 +158,7 @@ function ModalAddData(props){
         {Type: "ID",Input:"text", wrong:"Validar con la base de datos"},
         {Type: "Nombre", Input:"text", wrong: "Ingrese un Nombre"},
         {Type: "Equipo", Input:"text", wrong: "Ingrese un Equipo"},
+        {Type: "Categoria", Input:"text", wrong: "Ingrese categoria del Equipo"},
         {Type: "Ciudad", Input:"text", wrong: "Ingrese una Ciudad"},
         {Type: "Fecha", Input:"date", wrong: "Ingrese fecha en que Nacio"},
         {Type: "Edad", Input:"Edad", wrong: " Ingrese una edad adecuada"},
@@ -198,46 +214,52 @@ function ModalAddData(props){
 
     const subirFoto = () =>{
         // antes de guardar la info a la db hacemos la subida de la imagen a storage
-        try {
-            const nameFile = image.name;//Nombre de la foto
-            const storageRef = ref(storage,'Images/'+nameFile); // concatenamos la ruta con el nombre y a la ves le decimos donde lo guardara
-            const uploadTask = uploadBytesResumable(storageRef, image); // aqui subimos la imagen ala ruta especificada
-            //Podran pasar 3 cosas: cambio de estado, fallo y se subio
-            uploadTask.on('state_changed', 
-                (snapshot) => {
-                    //Progreso con lo que se sube
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    setImageProgress((prevDatos)=> ({...prevDatos,progreso: progress}));
-                    // eslint-disable-next-line default-case
-                    switch (snapshot.state) {
-                        case 'paused':
-                            /*console.log('Upload is paused');*/
-                            setImageProgress((prevDatos)=> ({...prevDatos,state: "Paused"}));
-                            break;
-                        case 'running':
-                            /*console.log('Upload is running');*/
-                            setImageProgress((prevDatos)=> ({...prevDatos,state:"Subiendo"}));
-                            break;
+        if(image===""){
+            alert("Suba una imagen Antes");
+        }
+        else{
+            try {
+                const nameFile = image.name;//Nombre de la foto
+                const storageRef = ref(storage,'Images/'+nameFile); // concatenamos la ruta con el nombre y a la ves le decimos donde lo guardara
+                const uploadTask = uploadBytesResumable(storageRef, image); // aqui subimos la imagen ala ruta especificada
+                //Podran pasar 3 cosas: cambio de estado, fallo y se subio
+                uploadTask.on('state_changed', 
+                    (snapshot) => {
+                        //Progreso con lo que se sube
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        setImageProgress((prevDatos)=> ({...prevDatos,progreso: progress}));
+                        // eslint-disable-next-line default-case
+                        switch (snapshot.state) {
+                            case 'paused':
+                                /*console.log('Upload is paused');*/
+                                setImageProgress((prevDatos)=> ({...prevDatos,state: "Paused"}));
+                                break;
+                            case 'running':
+                                /*console.log('Upload is running');*/
+                                setImageProgress((prevDatos)=> ({...prevDatos,state:"Subiendo"}));
+                                break;
+                        }
+                    }, 
+                    (error) => {
+                        // Handle unsuccessful uploads
+                    }, 
+                    () => {
+                        // Handle successful uploads on complete
+                        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                            setTimeout(()=>{},2000)
+                            /*console.log('File available at', downloadURL);*/
+                            setDatosLocales((prevDatos)=>({...prevDatos, urlImage: downloadURL}));
+                            setImageProgress((prevDatos)=> ({...prevDatos, state:""}));
+                            document.getElementById("btn-Guardar").disabled = false;
+                            getDocAmount();
+                        });
                     }
-                }, 
-                (error) => {
-                    // Handle unsuccessful uploads
-                }, 
-                () => {
-                    // Handle successful uploads on complete
-                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        setTimeout(()=>{},2000)
-                        /*console.log('File available at', downloadURL);*/
-                        setDatosLocales((prevDatos)=>({...prevDatos, urlImage: downloadURL}));
-                        setImageProgress((prevDatos)=> ({...prevDatos, state:""}));
-                        document.getElementById("btn-Guardar").disabled = false;
-                    });
-                }
-            );
-
-        } catch (error) {
-            console.log('error', error);
+                );
+    
+            } catch (error) {
+                console.log('error', error);
+            }
         }
     }
 

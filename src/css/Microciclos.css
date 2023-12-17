@@ -1,0 +1,48 @@
+/*
+    No Cambiar esto, ya que Resumen.jsx tambien se beneficia,
+    al ir haciendo responsive todo, encontre mejores formas de hacerlo.
+*/
+.Micro-Container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr auto;
+    gap: 5px 5px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "Left-Logo Micro-Header Micro-Header Micro-Header Right-Logo"
+      "Micro-Table Micro-Table Micro-Table Micro-Table Micro-Table";
+    margin-bottom: 0.75rem;
+}
+
+.Flex{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column; 
+}
+
+.Left-Logo{
+    grid-area: Left-Logo; ; 
+}
+.Micro-Header{
+    grid-area: Micro-Header; 
+    font-weight: 500;
+    font-size: 20px; 
+}
+.Right-Logo{
+    grid-area: Right-Logo;; 
+}
+.Micro-Table{
+    grid-area: Micro-Table; ; 
+}
+
+.Table-Pad tr td{
+    padding: 5px 0 5px 0;
+}
+.table-bordered {
+    border: 2px solid black !important; /* Cambia el color del borde según tu preferencia */
+  }
+
+[class^="BG-"][class$="-0"] td{
+    background-color: #ceeaf6 !important;
+}

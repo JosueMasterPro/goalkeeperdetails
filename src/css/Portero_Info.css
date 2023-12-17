@@ -1,0 +1,153 @@
+/*  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+*/
+.Porteros-Container {  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto repeat(3, 1fr);
+  gap: 5px 5px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Header-Info Header-Info Header-Info Header-Info Header-Info"
+    "Info-Image Info-1 Info-2 Info-3 Info-4"
+    "Info-Image Info-5 Info-6 Info-7 Info-8"
+    "Info-9 Info-10 Info-11 Info-12 Info-13";
+  margin-bottom: 0.75rem;
+}
+.MARGENES{
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+@media (min-width: 576px) and (max-width: 991.98px){
+  .Porteros-Container {  
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto repeat(4, 1fr);
+    gap: 5px 5px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "Header-Info Header-Info Header-Info Header-Info"
+      "Info-Image Info-1 Info-2 Info-3"
+      "Info-Image Info-4 Info-5 Info-6"
+      "Info-7 Info-8 Info-9 Info-10 "
+      "Info-11 Info-12 Info-13 .";
+      
+  }
+  .MARGENES{
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+  .Info-Image img{
+    width: auto;
+    height: auto;
+  }
+}
+@media (max-width: 576px){
+  .Porteros-Container {  
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto repeat(6, 120px);
+    gap: 5px 5px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "Header-Info Header-Info"
+      "Info-Image Info-1"
+      "Info-2 Info-3"
+      "Info-4 Info-5"
+      "Info-6 Info-7"
+      "Info-8 Info-9 "
+      "Info-10 Info-11"
+      "Info-12 Info-13";
+  }
+  .MARGENES{
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+  }
+  .Info-Image img{
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+
+[class*="Info"] {
+  border: 2px solid black; /* Agrega un borde de 1 píxel sólido negro a todos los elementos cuya clase contiene "item" */
+}
+
+[class^="I-"][class$="-1"]
+{
+  display: flex; /* Aplica display flex al elemento para alinear contenido */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  flex-direction: column; /*Direcion del Flex*/
+  border-bottom: 2px solid black;
+}
+
+[class^="I-"][class$="-2"],
+[class^="I-"][class$="-3"]
+{
+  display: flex; /* Aplica display flex al elemento para alinear contenido */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  flex-direction: column; /*Direcion del Flex*/
+}
+
+.Header-Info { grid-area: Header-Info; background-color: #ceeaf6; }
+
+.Info-1 { grid-area: Info-1; background-color: #ceeaf6; }
+
+.Info-2 { grid-area: Info-2; background-color: #ceeaf6; }
+
+.Info-3 { grid-area: Info-3; background-color: #ceeaf6; }
+
+.Info-4 { grid-area: Info-4; background-color: #ceeaf6; }
+
+.Info-6 { grid-area: Info-6; background-color: #ceeaf6; }
+
+.Info-5 { grid-area: Info-5; background-color: #ceeaf6; }
+
+.Info-7 { grid-area: Info-7; background-color: #ceeaf6; }
+
+.Info-8 { grid-area: Info-8; background-color: #ceeaf6; }
+
+.Info-9 { grid-area: Info-9; background-color: #ceeaf6; }
+
+.Info-10 { grid-area: Info-10; background-color: #ceeaf6; }
+
+.Info-11 { grid-area: Info-11; background-color: #ceeaf6; }
+
+.Info-12 { grid-area: Info-12; background-color: #ceeaf6; }
+
+.Info-13 {  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "I-13-1"
+    "I-13-2"
+    "I-13-3";
+  grid-area: Info-13;
+  background-color: #ceeaf6;
+}
+.I-13-2{
+  border-bottom: 2px solid black;
+}
+.Borde-Bajo{
+  border-bottom: 2px solid black;
+}
+
+.Info-Image {
+  display: flex; /* Aplica display flex al elemento para alinear contenido */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  flex-direction: column; /*Direcion del Flex*/
+  border-bottom: 2px solid black; 
+  grid-area: Info-Image; background-color: #ceeaf6; 
+}

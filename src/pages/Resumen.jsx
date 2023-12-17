@@ -4,6 +4,7 @@ import BackButton from "../components/BackButton";
 
 /*images*/
 import LogoHonduras from "../img/Logo-Honduras.jpg"
+
 import ModalAddData from "../components/ModalAddData";
 
 import { useState, useEffect } from "react";
@@ -13,7 +14,7 @@ import {
     collection,
     onSnapshot,
   } from "firebase/firestore";
-
+import { Table } from "react-bootstrap";
 
  function Resumen() {
     const [modalShow, setModalShow]  = useState(false); 
@@ -37,44 +38,33 @@ import {
         <>
             <div className="Main-Container">
                 <BackButton/>
-                <div className="container mt-5 p-0"> 
-                    <div className="row row-cols-auto mt-2 ">
-                        <div className="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 order-0 A p-0">
-                            <img className="Logo_H align-start" src={LogoHonduras} alt="Honduras"/>
+                <div className="Micro-Container mt-5 MARGENES p-0"> 
+                    <div className="Left-Logo Flex"> 
+                            <img className="Logo_H img-fluid" src={LogoHonduras} alt="Honduras"/>
                         </div>
-                        <div className="col-4 col-sm-1 col-md-1 col-lg-1 col-xl-1 order-1">
-
-                        </div>
-                        <div className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 order-4 order-sm-2 order-md-2 order-lg-2 order-xl-2 B p-0">
-                            <p className="fs-4">Resumen</p>
-                            <p className="fs-4">Visoria: Josue Reyes</p>
-                        </div>
-                        <div className="col-4 col-sm-1 col-md-1 col-lg-1 col-xl-1 order-2 order-sm-3 order-md-3 order-lg-3 order-xl-3">
-
-                        </div>
-                        <div className="C col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 order-3 order-sm-4 order-md-4 order-lg-4 order-xl-4 p-0">
-                            <img className="Logo_H float-end me-3" src={LogoHonduras} alt="Honduras"/>
-                        </div>
+                        <div className="Micro-Header Flex">Microciclo H-20</div>
+                        <div className="Right-Logo Flex"> 
+                        <img className="Logo_H img-fluid" src={LogoHonduras} alt="Honduras"/>
                     </div>
                     {/* No.	ID	NOMBRE	EQUIPO	CIUDAD	NACIO	EDAD	TALLA	PESO	TELEFONO	EP	NOMBRE	TELEFONO	VISORIA */}
-                    <div className="table-responsive mt-3">
-                        <table className="table table-hover table-bordered table-sm align-middle text-center">
+                    <div className="Micro-Table table-responsive mb-5 text-center">
+                        <Table striped bordered hover>
                             <thead>
                                 <tr>
-                                    <th scope="col">N</th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Equipo</th>
-                                    <th scope="col">Ciudad</th>
-                                    <th scope="col">Nacio</th>
-                                    <th scope="col">Edad</th>
-                                    <th scope="col">Talla</th>
-                                    <th scope="col">Peso</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Ep</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Visoria</th>
+                                    <th>N</th>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Equipo</th>
+                                    <th>Ciudad</th>
+                                    <th>Nacio</th>
+                                    <th>Edad</th>
+                                    <th>Talla</th>
+                                    <th>Peso</th>
+                                    <th>Telefono</th>
+                                    <th>Ep</th>
+                                    <th>Nombre</th>
+                                    <th>Telefono</th>
+                                    <th>Visoria</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,7 +72,7 @@ import {
                             <>
                                 {datosTotales.map((info, index) => (
                                     <tr key={index+"_"+info.data.Telefono}>
-                                        <th scope="row">{index+1}</th>
+                                        <th>{index+1}</th>
                                         <td>{info.data.ID}</td>
                                         <td>{info.data.Nombre}</td>
                                         <td>{info.data.Equipo}</td>
@@ -115,7 +105,7 @@ import {
                                     </td>
                                 </tr>
                             </tfoot>
-                        </table>
+                        </Table>
                     </div>
                 </div>
                 <ModalAddData show={modalShow} onHide={() => setModalShow(false)}/>

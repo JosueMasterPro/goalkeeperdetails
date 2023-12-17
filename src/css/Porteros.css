@@ -1,17 +1,45 @@
-  .border-row {
-    border: 1px solid #000; /* Borde para las filas */
-    padding: 10px; /* Ajusta el relleno según tus necesidades */
-    background-color: white;
-    justify-content: center;
-  }
-  
-  .border-col {
-    border-right: 1px solid #000; /* Borde derecho para separar las columnas */
-    font-weight: 500;
-    background-color: white;
-  }
-  
-  /* Elimina el borde derecho del último elemento Col */
-  .border-col:last-child {
-    border-right: none;
-  }
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.user-card {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    transition: all 0.5s;
+    transition-timing-function: linear;
+    background: #ceeaf6;
+    border: 2px solid #b5e4f6;
+    filter: drop-shadow(#015c92 10px 10px 4px);
+}
+
+.user-card:hover{
+    transform: scale(1.01,1.01);
+    filter: drop-shadow(#013c5f 20px 20px 20px);
+}
+.user-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.user-info p {
+    margin: 0;
+    color: #060606;
+    font-size: 0.9em;
+}
+

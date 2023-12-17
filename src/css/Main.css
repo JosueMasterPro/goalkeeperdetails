@@ -16,7 +16,10 @@
 
 .Main-Cards-Container{
     margin: 0 24px 24px 24px;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column; 
 }
 
 .card{
