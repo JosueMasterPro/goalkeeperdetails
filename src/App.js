@@ -2,8 +2,8 @@ import { ProtectedRoute } from './helpers/ProtectedRoute';
 import { Routes, Route } from 'react-router-dom';
 import { AuhtProvider } from './Context/authContext';
 import { PorterosProvider } from './Context/porterosContex';
-/* Importar Paginas */
 
+/* Importar Paginas */
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Resumen from './pages/Resumen';
@@ -11,6 +11,7 @@ import Porteros from './pages/Porteros';
 import PorteroInfo from './pages/Porteros_Info'
 import Microciclos from './pages/Microciclos';
 import Entreno from './pages/Entreno';
+import Entrevista from './pages/Entrevista';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/Porteros/:ID" element={<PorteroInfo/>}/>
             <Route path="/Microciclos" element={<Microciclos/>}/>
             <Route path='/Entreno' element={ <Entreno/> }/>
+            <Route path='/Entrevista' element={ <Entrevista/> }/>
           </Routes>
         </PorterosProvider>
       </AuhtProvider>

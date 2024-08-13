@@ -14,5 +14,5 @@ https://react-bootstrap.netlify.app/docs/getting-started/introduction
 https://reactrouter.com/en/main/start/tutorial
 
 //crear un archivo .env.locale y dentro de el escribir: BROWSER=None
-esto permite que al ejecutar npm start o yarn start, no habra el navegador
+esto permite que al ejecutar npm start o yarn start, y que no habra el navegador
 automaticamente

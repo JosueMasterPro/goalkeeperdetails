@@ -5,24 +5,36 @@
   display: grid;
   place-items: center;
   padding: 0 24px;
-  height: 100vh;
+  height: 100dvh;
   background-image: url('../img/picacho.jpeg');
   background-position: center center;
   background-size: 100% 100%;
   background-attachment: fixed;
   color: #f9f9f9;  
-  animation: "background" 10s infinte linear alternate linear;
+  /* animation: "background" 10s infinte linear alternate linear; */
 }
-@media (width >= 500px) {
-  .login-container{padding: 0;}  
+@media (width <= 600px) {
+  .login-container{
+    padding: 0;
+    background-size: auto auto;
+    background-repeat: no-repeat;
+    background-color:	#00bce4;
+  }  
 }
+
 @media (height <= 560px) {
-  .login-container{height: 100%;}  
+  .login-container{
+    height: 100%;
+  }  
+  .login{
+    margin-top: 10px;
+    
+  }
 }
 
 .login{
   width: 90%;
-  padding: 70px 30px 44px;
+  padding: 55px 25px 55px;
   background: rgba(0, 0, 0, 0.8);
   text-align: center;
   border: 3px solid rgba(0, 255, 255, 0.5);

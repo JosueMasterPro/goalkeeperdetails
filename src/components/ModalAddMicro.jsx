@@ -171,23 +171,45 @@ function ModalAddMicro(props){
                             </Col>
                         </Row>
                         <Row className="mt-3">
-                            <Col xs={8} md={8} lg={8} xl={8}>
-                                <div className="text-center fs-5">Porteros</div>
+                            <Col className="mt-2" >
+                                Entrenos
                             </Col>
-                            <Col xs={2} md={2} lg={2} xl={2}>
-                                <button onClick={()=>{setPorteroCount((prevDatos)=>prevDatos+1)}} 
-                                    className="BTN-Mas">+</button>
-                            </Col>
-                            <Col xs={2} md={2} lg={2} xl={2}>
-                                <button onClick={
-                                    () =>{
-                                        if(porteroCount!==0){
-                                            setPorteroCount((prevDatos)=>prevDatos-1)
-                                        }
-                                    }}
-                                    className="BTN-Menos">-</button>
+                            <Col className="mt-2" xs={8} md={8} lg={8} xl={8}>
+                                <Form.Control 
+                                    autoComplete="off"
+                                    type="number"
+                                    className="w-100"
+                                    id="Entrenos"
+                                    required
+                                    onChange={handleChange}
+                                />
                             </Col>
                         </Row>
+                        <Row className="mt-3 border-top border-black">
+                            <Row className="mt-3">
+                                <Col xs={8} md={8} lg={8} xl={8}>
+                                    <div className="text-center fs-5">Porteros</div>
+                                </Col>
+                                <Col xs={2} md={2} lg={2} xl={2}>
+                                    <button onClick={
+                                        () =>{
+                                            if(porteroCount!==0){
+                                                setPorteroCount((prevDatos)=>prevDatos-1)
+                                            }
+                                        }}
+                                        className="BTN-Menos">-</button>
+                                </Col>
+                                <Col xs={2} md={2} lg={2} xl={2}>
+                                    <button onClick={()=>{
+                                        if(porteroCount < 4){
+                                            setPorteroCount((prevDatos)=>prevDatos+1)}
+                                        }
+                                    } 
+                                        className="BTN-Mas">+</button>
+                                </Col>
+                            </Row>
+                        </Row>
+
                         {Array.from({ length: porteroCount }, (_, index) => (
                             <Row key={index} className="">
                                 <Row className="border-bottom border-black">
@@ -237,21 +259,8 @@ function ModalAddMicro(props){
                                 </Col>
                             </Row>
                         ))}
-                        <Row className="mt-3 border-top border-black">
-                            <Col className="mt-2" >
-                                Entrenos
-                            </Col>
-                            <Col className="mt-2" xs={8} md={8} lg={8} xl={8}>
-                                <Form.Control 
-                                    autoComplete="off"
-                                    type="number"
-                                    className="w-100"
-                                    id="Entrenos"
-                                    required
-                                    onChange={handleChange}
-                                />
-                            </Col>
-                        </Row>
+
+                        
                     </Container>
                 </Modal.Body>
                 <Modal.Footer>

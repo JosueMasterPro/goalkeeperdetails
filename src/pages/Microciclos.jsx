@@ -53,7 +53,7 @@ const Microciclos = () => {
                     <img className="Logo_H img-fluid" src={LogoHonduras} alt="Honduras"/>
                     </div>
                     <div className="Micro-Table table-responsive text-center">
-                        <Table bordered className="Table-Pad">
+                        <Table bordered className="Table-Pad mt-2">
                             <thead className="align-middle">
                                 <tr>
                                     <th># Micro</th>

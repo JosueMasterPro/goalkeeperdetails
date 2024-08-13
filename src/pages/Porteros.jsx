@@ -34,7 +34,7 @@ function Porteros() {
     return(
         <div className="Main-Container">
             <BackButton/>
-            <div className=" me-4 me-md-5 me-lg-5 me-xl-5 ms-4 ms-md-5 ms-lg-5 ms-xl-5 mt-3  mb-3 p-1">
+            <div className=" me-4 me-md-5 me-lg-5 me-xl-5 ms-4 ms-md-5 ms-lg-5 ms-xl-5 mt-5  mb-3 p-1">
                 {datosTotales?
                     <div className="user-grid" >
                         {datosTotales.map((datos,index)=>(

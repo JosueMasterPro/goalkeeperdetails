@@ -18,7 +18,7 @@ export const useAuth = () => {
 }
 
 export function AuhtProvider({ children }){
-    const [user,setUser] = useState("");
+    const [user, setUser] = useState("");
     const [loading, setLoading] = useState(true);
     
     const signup = (email, password)=>{
@@ -52,6 +52,4 @@ export function AuhtProvider({ children }){
         
         </authContext.Provider>
     )
-        
-
 }

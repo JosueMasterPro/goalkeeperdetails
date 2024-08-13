@@ -38,12 +38,12 @@ import { Table } from "react-bootstrap";
         <>
             <div className="Main-Container">
                 <BackButton/>
-                <div className="Micro-Container mt-5 MARGENES p-0"> 
+                <div className="mt-5 MARGENES p-0 Resumen-Container"> 
                     <div className="Left-Logo Flex"> 
-                            <img className="Logo_H img-fluid" src={LogoHonduras} alt="Honduras"/>
-                        </div>
-                        <div className="Micro-Header Flex">Microciclo H-20</div>
-                        <div className="Right-Logo Flex"> 
+                        <img className="Logo_H img-fluid" src={LogoHonduras} alt="Honduras"/>
+                    </div>
+                    <div className="Micro-Header Flex">Porteros H-20</div>
+                    <div className="Right-Logo Flex"> 
                         <img className="Logo_H img-fluid" src={LogoHonduras} alt="Honduras"/>
                     </div>
                     {/* No.	ID	NOMBRE	EQUIPO	CIUDAD	NACIO	EDAD	TALLA	PESO	TELEFONO	EP	NOMBRE	TELEFONO	VISORIA */}

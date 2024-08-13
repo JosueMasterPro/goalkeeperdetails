@@ -8,16 +8,17 @@ export default function BackButton() {
         //console.log(location.pathname);
         var text = location.pathname.split("/");
         var direction = "";
-        for(var i = 0; i<text.length;i++){
+        for(var i = 0; i < text.length; i++){
             text[i] = "/" + text[i];
             if(i > 0 && i < text.length-1){
                 direction = direction + text[i];
             }
         }
+        
         if(direction === ""){
-            direction="/"
+            direction="/";
         }
-        navigate(direction)
+        navigate(direction);
     }
 
     return(

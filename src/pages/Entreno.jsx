@@ -31,13 +31,13 @@ function Entreno() {
       };
     
       return (
-        <>
+        <div className="Main-Container">
             <BackButton/>
             <div className="mt-5">
                 <h3>Entreno</h3>
-                <button onClick={() => cambiarNombreDocumento('DP-004', '4-DP-004')}>Cambiar Nombre del Documento</button>
+                <button onClick={() => cambiarNombreDocumento('', '')}>Cambiar Nombre del Documento</button>
             </div>
-        </>
+        </div>
 
       );
 };

@@ -13,7 +13,7 @@ import {
 const Portero_Info = () =>{
     const { datosPorteros } = usePorteros();
     /*Variables de microciiclo*/
-    const [microDatos,setMicroDatos] = useState(null);
+    const [microDatos, setMicroDatos] = useState(null);
     const [totalEntrenos, setTotalEntrenos] = useState(0); 
 
     //Helper para ver si tiene datos
@@ -32,7 +32,6 @@ const Portero_Info = () =>{
 
     function aplicarEstiloDinamico(elemento) {
         const clases = elemento.className.split(' ');
-
         // Verificar cada clase
         clases.forEach(clase => {
             /*console.log('Clase actual:', clase);*/
@@ -65,35 +64,35 @@ const Portero_Info = () =>{
             // eslint-disable-next-line react-hooks/exhaustive-deps
             }, []);
 
-            useEffect(()=>{
-                    if(microDatos){
-                        let nuevoTotalEntrenos = 0;
-                        let nuevoEntrenosPorPortero = { ...entrenosPorPortero };
+        useEffect(()=>{
+            if(microDatos){
+                let nuevoTotalEntrenos = 0;
+                let nuevoEntrenosPorPortero = { ...entrenosPorPortero };
 
-                        microDatos.forEach((datos) => {
-                            // Sumar los entrenos totales
-                            nuevoTotalEntrenos += datos.data.Entrenos;
-                            // Iterar sobre los porteros en los datos
-                            datos.data.Porteros.forEach((portero) => {
-                              // Verificar si ya existe la entrada para el portero en entrenosPorPortero
-                              if (!nuevoEntrenosPorPortero[portero.ID]) {
-                                // Si no existe, crear una entrada para el portero con valor inicial 0
-                                nuevoEntrenosPorPortero[portero.ID] = 0;
-                              }
-                              if (!nuevoEntrenosPorPortero["Count_"+portero.ID]) {
-                                // Si no existe, crear una entrada para el portero con valor inicial 0
-                                nuevoEntrenosPorPortero["Count_"+portero.ID] = 0;
-                              }
-                              // Sumar los entrenos del portero al total acumulado
-                              nuevoEntrenosPorPortero[portero.ID] += portero.Entreno_Ind;
-                              nuevoEntrenosPorPortero["Count_"+portero.ID]++;
-                            });
-                          });
-                          setTotalEntrenos(nuevoTotalEntrenos);
-                          setEntrenosPorPortero(nuevoEntrenosPorPortero);
-                    };
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            },[microDatos]);
+                microDatos.forEach((datos) => {
+                    // Sumar los entrenos totales
+                    nuevoTotalEntrenos += datos.data.Entrenos;
+                    // Iterar sobre los porteros en los datos
+                    datos.data.Porteros.forEach((portero) => {
+                        // Verificar si ya existe la entrada para el portero en entrenosPorPortero
+                        if (!nuevoEntrenosPorPortero[portero.ID]) {
+                        // Si no existe, crear una entrada para el portero con valor inicial 0
+                        nuevoEntrenosPorPortero[portero.ID] = 0;
+                        }
+                        if (!nuevoEntrenosPorPortero["Count_"+portero.ID]) {
+                        // Si no existe, crear una entrada para el portero con valor inicial 0
+                        nuevoEntrenosPorPortero["Count_"+portero.ID] = 0;
+                        }
+                        // Sumar los entrenos del portero al total acumulado
+                        nuevoEntrenosPorPortero[portero.ID] += portero.Entreno_Ind;
+                        nuevoEntrenosPorPortero["Count_"+portero.ID]++;
+                    });
+                    });
+                    setTotalEntrenos(nuevoTotalEntrenos);
+                    setEntrenosPorPortero(nuevoEntrenosPorPortero);
+            };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        },[microDatos]);
 
 
     return(
@@ -108,10 +107,13 @@ const Portero_Info = () =>{
                                 Portero Sub-20
                             </Col>
                         <Row className="mb-1 mt-1">
-                            <Col xs={8} md={8} lg={8} xl={8} className="border-end border-black text-center">
+                            <Col xs={3} md={3} lg={3} xl={3} className="text-end">
+                                Nombre:
+                            </Col>
+                            <Col xs={6} md={6} lg={6} xl={6} className="border-end border-start border-black ">
                                 {datosPorteros.Nombre}
                             </Col>
-                            <Col xs={4} md={4} lg={4} xl={4} className="text-center">
+                            <Col xs={3} md={3} lg={3} xl={3} className="text-center">
                                 Tel: {datosPorteros.Telefono}
                             </Col>
                         </Row>
